@@ -6,6 +6,8 @@ async function getGif() {
     .then(function (response) {
       if (response.status == 200) {
         return response.json();
+      } else {
+        throw new Error("Failed to fetch GIF. Please try again.");
       }
     })
     .then(function (jsonData) {
@@ -24,6 +26,9 @@ async function getGif() {
       gifContainer.appendChild(caption);
     })
     .catch(function (error) {
+      const errorContainer = document.getElementById("errorContainer");
+      errorContainer.textContent = "";
+      errorContainer.textContent = error.message;
       console.log("There was a problem", error);
     });
 }
