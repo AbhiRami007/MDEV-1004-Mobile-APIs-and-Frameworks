@@ -8,6 +8,16 @@
   </head>
   <body>
     <h1>GIF Search App</h1>
+    <input
+      type="text"
+      id="searchInput"
+      onchange="clearAllGifs()"
+      placeholder="Type a word..."
+    />
+    <div id="buttonContainer">
+      <button id="searchButton" onclick="getGif()">Search</button>
+      <button id="clearButton" onclick="clearAllGifs()">Clear</button>
+    </div>
     <div id="gifContainer"></div>
     <div id="errorContainer"></div>
     <script src="script.js"></script>
