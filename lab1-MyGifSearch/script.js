@@ -32,3 +32,12 @@ async function getGif() {
       console.log("There was a problem", error);
     });
 }
+
+function clearAllGifs() {
+  let gifs = document.querySelectorAll(".gif");
+  let captions = document.querySelectorAll(".caption");
+	const errorContainer = document.getElementById("errorContainer");
+	errorContainer.textContent = "";
+  gifs.forEach((gif) => gif.remove());
+  captions.forEach((caption) => caption.remove());
+}
