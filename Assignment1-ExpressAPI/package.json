@@ -4,6 +4,7 @@
   "description": "Assignment 1 Express API",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Abhirami Pradeep Susi",
@@ -12,6 +13,7 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.0",
     "mongodb": "^6.9.0",
-    "mongoose": "^8.6.4"
+    "mongoose": "^8.6.4",
+    "nodemon": "^3.1.7"
   }
 }
