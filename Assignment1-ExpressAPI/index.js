@@ -2,7 +2,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
-const recipeRoutes = require('./routes/recipeRoutes');
+const recipeRoutes = require('./routes/recipeRoute');
 
 //initialise express app
 const app = express();
@@ -15,10 +15,10 @@ const mongoURI =
 mongoose
   .connect(mongoURI)
   .then(() => {
-    console.log("Connected");
+    console.log("MongoDB Connected");
   }).catch((error)=>{
-		console.log("Connection Error")
-	});
+    console.log("Connection Error")
+  });
 
 //Middleware to parse JSON body
 app.use(bodyParser.json());
@@ -34,3 +34,4 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
