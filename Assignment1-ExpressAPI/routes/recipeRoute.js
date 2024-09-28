@@ -10,7 +10,7 @@ const router = express.Router();
 const recipeController = require('../controllers/recipeController');
 
 // POST route for creating recipe
-// router.post('/recipes', recipeController.createRecipes);
+router.post('/recipes', recipeController.createRecipes);
 
 // GET route for all recipes
 router.get('/recipes', recipeController.getAllRecipes);

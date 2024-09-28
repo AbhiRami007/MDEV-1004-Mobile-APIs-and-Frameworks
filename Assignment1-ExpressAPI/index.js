@@ -16,7 +16,7 @@ const app = express();
 
 //MongoDB Atlas connection string
 const mongoURI =
-  "mongodb+srv://readonlyUser:user123@recipescluster.yfqeq.mongodb.net/?retryWrites=true&w=majority&appName=RecipesCluster";
+  "mongodb+srv://psabhirami015:abhi123@recipescluster.yfqeq.mongodb.net/?retryWrites=true&w=majority&appName=RecipesCluster";
 
 //Connect to MongoDB Atlas
 mongoose
