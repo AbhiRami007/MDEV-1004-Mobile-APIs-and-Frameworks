@@ -6,6 +6,7 @@
 */
 
 //import express
+require('dotenv').config({ path: './config.env' });
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -15,8 +16,7 @@ const recipeRoutes = require('./routes/recipeRoute');
 const app = express();
 
 //MongoDB Atlas connection string
-const mongoURI =
-  "mongodb+srv://psabhirami015:abhi123@recipescluster.yfqeq.mongodb.net/?retryWrites=true&w=majority&appName=RecipesCluster";
+const mongoURI = process.env.DATABASE_URL;
 
 //Connect to MongoDB Atlas
 mongoose
@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', recipeRoutes);
 
 //set the port
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //start the server
 app.listen(PORT, () => {
