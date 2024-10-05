@@ -10,9 +10,6 @@ InitializeMongoServer();
 // Initialize the express app
 const app = express();
 
-//Read data from movies.json
-const data = JSON.parse(fs.readFileSync('./movies.json','utf-8'));
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
