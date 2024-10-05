@@ -30,3 +30,13 @@ exports.importMovies = async (req, res) => {
     res.status(500).send("Error importing data");
   }
 };
+
+exports.getAllMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    res.status(200).json(movies);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error retrieving Movies");
+  }
+};
