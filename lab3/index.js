@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const fs = require('fs');
 dotenv.config({ path: './config.env' });
-
+const moviesRoutes = require('./src/routes/moviesRoute')
 // Initialize MongoDB connection
 const InitializeMongoServer = require('./db');
 InitializeMongoServer();
@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.send('Welcome to the first program of Node.js Express');
 });
+
+//Use the movies routes
+app.use('/movies', moviesRoutes);
 
 const port = process.env.PORT || 3000;
 
