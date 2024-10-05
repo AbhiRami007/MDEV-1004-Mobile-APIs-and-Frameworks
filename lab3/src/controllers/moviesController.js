@@ -58,9 +58,26 @@ exports.createMovie = async (req, res) => {
   try {
     const movie = new Movie(req.body);
     await movie.save();
-    res.status(201).json({message:"Movie created Successfully", movie});
+    res.status(201).json({ message: "Movie created Successfully", movie });
   } catch (e) {
     console.error(e);
     res.status(500).send("Error creating Movies");
+  }
+};
+
+exports.updateMovie = async (req, res) => {
+  try {
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updatedMovie) {
+      return res.status(404).send("Movie is not updated");
+    }
+    res.status(201).json({message:"Movie updated successfully", updatedMovie});
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error updating the Movies");
   }
 };
