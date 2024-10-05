@@ -53,3 +53,14 @@ exports.getMovieById = async (req, res) => {
     res.status(500).send("Error retrieving the Movie");
   }
 };
+
+exports.createMovie = async (req, res) => {
+  try {
+    const movie = new Movie(req.body);
+    await movie.save();
+    res.status(201).json({message:"Movie created Successfully", movie});
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error creating Movies");
+  }
+};
