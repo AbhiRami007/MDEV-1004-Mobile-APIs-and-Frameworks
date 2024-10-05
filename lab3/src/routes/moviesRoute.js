@@ -8,4 +8,7 @@ router.post('/import',movieController.importMovies);
 //Route to get all movies
 router.get('/',movieController.getAllMovies);
 
+//Route to get movie by id
+router.get('/:id',movieController.getMovieById);
+
 module.exports = router;
