@@ -5,6 +5,7 @@ dotenv.config({ path: './config.env' });
 const moviesRoutes = require('./src/routes/moviesRoute')
 // Initialize MongoDB connection
 const InitializeMongoServer = require('./db');
+const { logger, handleNotFound } = require('./src/middleware/moviesMiddleware');
 InitializeMongoServer();
 
 // Initialize the express app
@@ -13,6 +14,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(logger);//apply logger middleware
 
 // Define a root route
 app.get('/', (req, res) => {
@@ -20,8 +22,8 @@ app.get('/', (req, res) => {
 });
 
 //Use the movies routes
-app.use('/movies', moviesRoutes);
-
+app.use('/movie', moviesRoutes);
+app.use(handleNotFound);//404 handler for routes not defined
 const port = process.env.PORT || 3000;
 
 // Start the server
