@@ -2,7 +2,7 @@
   File: moviesController.js
   Student's Name: Abhirami Pradeep Susi
   Student ID: 200589663
-  Date: 05 Oct 2024
+  Date: 10 Oct 2024
 */
 
 const Movie = require("../models/moviesModel");
