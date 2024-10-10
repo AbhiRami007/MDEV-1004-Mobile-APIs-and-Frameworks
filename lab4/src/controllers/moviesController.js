@@ -33,7 +33,18 @@ exports.importMovies = async (req, res) => {
 
 exports.getAllMovies = async (req, res) => {
   try {
-    const movies = await Movie.find();
+    // Extract query parameters
+    const { title } = req.query;
+
+    // Build the query object dynamically
+    let query = {};
+
+    // Add filters based on the query parameters
+    if (title) {
+      // Use a case-insensitive regular expression for partial matching
+      query.title = { $regex: title, $options: "i" };
+    }
+    const movies = await Movie.find(query);
     res.status(200).json(movies);
   } catch (e) {
     console.error(e);
@@ -90,7 +101,9 @@ exports.deleteMovie = async (req, res) => {
     if (!deletedMovie) {
       return res.status(404).send("Movie not found");
     }
-    res.status(201).json({ message: "Movie deleted successfully", deletedMovie });
+    res
+      .status(201)
+      .json({ message: "Movie deleted successfully", deletedMovie });
   } catch (e) {
     console.error(e);
     res.status(500).send("Error deleting the Movies");
