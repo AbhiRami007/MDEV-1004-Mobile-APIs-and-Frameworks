@@ -17,5 +17,8 @@ router.post('/',movieController.createMovie);
 //Route to update a movie by id
 router.put('/:id', movieController.updateMovie);
 
+//Route to delete a movie by id
+router.delete('/:id',movieController.deleteMovie);
+
 
 module.exports = router;
