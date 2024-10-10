@@ -75,9 +75,24 @@ exports.updateMovie = async (req, res) => {
     if (!updatedMovie) {
       return res.status(404).send("Movie is not updated");
     }
-    res.status(201).json({message:"Movie updated successfully", updatedMovie});
+    res
+      .status(201)
+      .json({ message: "Movie updated successfully", updatedMovie });
   } catch (e) {
     console.error(e);
     res.status(500).send("Error updating the Movies");
+  }
+};
+
+exports.deleteMovie = async (req, res) => {
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(req.params.id);
+    if (!deletedMovie) {
+      return res.status(404).send("Movie not found");
+    }
+    res.status(201).json({ message: "Movie deleted successfully", deletedMovie });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error deleting the Movies");
   }
 };
