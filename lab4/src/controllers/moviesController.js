@@ -50,6 +50,11 @@ exports.getAllMovies = async (req, res) => {
       const genresArray = Array.isArray(genre) ? genre : genre.split(",");
       query.genres = { $in: genresArray }; // Use $in to match any of the genres
     }
+
+    if (year) {
+      query.year = year;
+    }
+
     const movies = await Movie.find(query);
     res.status(200).json(movies);
   } catch (e) {
