@@ -44,6 +44,12 @@ exports.getAllMovies = async (req, res) => {
       // Use a case-insensitive regular expression for partial matching
       query.title = { $regex: title, $options: "i" };
     }
+    // Genre filter (check if the genre exists in the genres array)
+    if (genre) {
+      // Handle both single and multiple genres (comma-separated)
+      const genresArray = Array.isArray(genre) ? genre : genre.split(",");
+      query.genres = { $in: genresArray }; // Use $in to match any of the genres
+    }
     const movies = await Movie.find(query);
     res.status(200).json(movies);
   } catch (e) {
