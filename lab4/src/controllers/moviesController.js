@@ -34,7 +34,7 @@ exports.importMovies = async (req, res) => {
 exports.getAllMovies = async (req, res) => {
   try {
     // Extract query parameters
-    const { title } = req.query;
+    const { title, genre, year } = req.query;
 
     // Build the query object dynamically
     let query = {};
