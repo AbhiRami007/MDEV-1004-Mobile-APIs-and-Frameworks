@@ -24,5 +24,7 @@ router.get('/:id', recipeController.getRecipeById);
 // PUT route to update recipe by id
 router.put('/:id', recipeController.updateRecipe);
 
+//Route to delete a movie by id
+router.delete('/:id',recipeController.deleteRecipe);
 
 module.exports = router;
