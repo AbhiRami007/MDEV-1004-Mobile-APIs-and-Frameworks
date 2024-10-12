@@ -1,6 +1,5 @@
 [
   {
-    "recipeId": "1",
     "recipeName": "Spaghetti Bolognese",
     "ingredients": [
       "Spaghetti",
@@ -20,7 +19,6 @@
     "averageRating": 4.5
   },
   {
-    "recipeId": "2",
     "recipeName": "Chicken Caesar Salad",
     "ingredients": [
       "Chicken breast",
@@ -37,7 +35,6 @@
     "averageRating": 4.2
   },
   {
-    "recipeId": "3",
     "recipeName": "Beef Tacos",
     "ingredients": [
       "Ground beef",
@@ -56,7 +53,6 @@
     "averageRating": 4.7
   },
   {
-    "recipeId": "4",
     "recipeName": "Vegetable Stir Fry",
     "ingredients": [
       "Broccoli",
@@ -76,7 +72,6 @@
     "averageRating": 4.3
   },
   {
-    "recipeId": "5",
     "recipeName": "Pancakes",
     "ingredients": [
       "Flour",
@@ -95,7 +90,6 @@
     "averageRating": 4.8
   },
   {
-    "recipeId": "6",
     "recipeName": "Margarita Pizza",
     "ingredients": [
       "Pizza dough",
@@ -112,7 +106,6 @@
     "averageRating": 4.6
   },
   {
-    "recipeId": "7",
     "recipeName": "Chicken Curry",
     "ingredients": [
       "Chicken breast",
@@ -131,7 +124,6 @@
     "averageRating": 4.4
   },
   {
-    "recipeId": "8",
     "recipeName": "Chocolate Chip Cookies",
     "ingredients": [
       "Butter",
@@ -152,7 +144,6 @@
     "averageRating": 4.9
   },
   {
-    "recipeId": "9",
     "recipeName": "Mushroom Risotto",
     "ingredients": [
       "Arborio rice",
@@ -172,7 +163,6 @@
     "averageRating": 4.6
   },
   {
-    "recipeId": "10",
     "recipeName": "Lemon Garlic Shrimp Pasta",
     "ingredients": [
       "Pasta",
@@ -191,7 +181,6 @@
     "averageRating": 4.7
   },
   {
-    "recipeId": "11",
     "recipeName": "Tomato Soup",
     "ingredients": [
       "Tomatoes",
@@ -211,7 +200,6 @@
     "averageRating": 4.5
   },
   {
-    "recipeId": "12",
     "recipeName": "Greek Salad",
     "ingredients": [
       "Cucumber",
@@ -231,7 +219,6 @@
     "averageRating": 4.3
   },
   {
-    "recipeId": "13",
     "recipeName": "BBQ Ribs",
     "ingredients": [
       "Pork ribs",
@@ -251,7 +238,6 @@
     "averageRating": 4.8
   },
   {
-    "recipeId": "14",
     "recipeName": "Banana Bread",
     "ingredients": [
       "Bananas",
@@ -271,7 +257,6 @@
     "averageRating": 4.7
   },
   {
-    "recipeId": "15",
     "recipeName": "Egg Fried Rice",
     "ingredients": [
       "Rice",
@@ -291,7 +276,6 @@
     "averageRating": 4.5
   },
   {
-    "recipeId": "16",
     "recipeName": "Beef Stew",
     "ingredients": [
       "Beef",
@@ -311,7 +295,6 @@
     "averageRating": 4.6
   },
   {
-    "recipeId": "17",
     "recipeName": "Cinnamon Rolls",
     "ingredients": [
       "Flour",
@@ -331,7 +314,6 @@
     "averageRating": 4.9
   },
   {
-    "recipeId": "18",
     "recipeName": "Caprese Salad",
     "ingredients": [
       "Tomatoes",
@@ -350,7 +332,6 @@
     "averageRating": 4.4
   },
   {
-    "recipeId": "19",
     "recipeName": "Chicken Alfredo",
     "ingredients": [
       "Chicken breast",
@@ -369,7 +350,6 @@
     "averageRating": 4.6
   },
   {
-    "recipeId": "20",
     "recipeName": "Apple Pie",
     "ingredients": [
       "Apples",
