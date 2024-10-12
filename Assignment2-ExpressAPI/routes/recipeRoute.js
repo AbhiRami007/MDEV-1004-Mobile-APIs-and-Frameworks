@@ -21,5 +21,8 @@ router.get('/', recipeController.getAllRecipes);
 // GET route to find recipe by id
 router.get('/:id', recipeController.getRecipeById);
 
+// PUT route to update recipe by id
+router.put('/:id', recipeController.updateRecipe);
+
 
 module.exports = router;
