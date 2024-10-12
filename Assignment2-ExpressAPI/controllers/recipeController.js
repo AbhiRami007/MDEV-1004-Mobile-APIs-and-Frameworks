@@ -13,6 +13,7 @@ const fs = require("fs");
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message on movies creation or an error message.
+ * @description - Import recipes to database
  */
 
 exports.importRecipes = async (req, res) => {
@@ -36,7 +37,8 @@ exports.importRecipes = async (req, res) => {
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message with JSON data on recipe creation or an error message.
- */
+ * @description - create a new recipes and save to database 
+*/
 
 exports.createRecipe = async (req, res) => {
   try {
@@ -54,6 +56,7 @@ exports.createRecipe = async (req, res) => {
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns JSON response with recipes or an error message.
+ * @description - Get all recipes from database
  */
 
 exports.getAllRecipes = async (req, res) => {
@@ -70,7 +73,8 @@ exports.getAllRecipes = async (req, res) => {
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns JSON response with recipes or an error message.
- */
+ * @description - Get single recipe from database by using id
+*/
 
 exports.getRecipeById = async (req, res) => {
   try {
@@ -90,7 +94,8 @@ exports.getRecipeById = async (req, res) => {
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message and JSON response with recipes or an error message.
- */
+ * @description - Update recipe by id and save to database 
+*/
 
 exports.updateRecipe = async (req, res) => {
   try {
@@ -116,7 +121,8 @@ exports.updateRecipe = async (req, res) => {
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message on deletion or an error message.
- */
+ * @description - delete recipe by id from database 
+*/
 
 exports.deleteRecipe = async (req, res) => {
   try {
