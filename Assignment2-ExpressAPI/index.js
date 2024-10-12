@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //define routes
-app.use('/', recipeRoutes);
+app.use('/recipe', recipeRoutes);
 
 //set the port
 const PORT = process.env.PORT || 3000;
