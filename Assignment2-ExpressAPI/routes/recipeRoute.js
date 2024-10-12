@@ -9,6 +9,9 @@ const express = require('express');
 const router = express.Router();
 const recipeController = require('../controllers/recipeController');
 
+//Route to import recipes
+router.post('/recipes/import',recipeController.importRecipes);
+
 // POST route for creating recipe
 router.post('/recipes', recipeController.createRecipes);
 
