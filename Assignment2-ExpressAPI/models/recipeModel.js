@@ -9,14 +9,14 @@ const mongoose = require('mongoose');
 
 // Recipe Schema Definition
 const recipeSchema = new mongoose.Schema({
-    recipeName: { type: String, required: true },
-    ingredients: { type: [String], required: true },
-    cookingTime: { type: String, required: true },
-    difficulty: { type: String, required: true },
-    cuisine: { type: String, required: true },
-    description: { type: String, required: true },
-    photoLink: { type: String, required: true },
-    averageRating: { type: Number, required: true }
+    recipeName: { type: String },
+    ingredients: { type: [String] },
+    cookingTime: { type: String },
+    difficulty: { type: String },
+    cuisine: { type: String },
+    description: { type: String },
+    photoLink: { type: String },
+    averageRating: { type: Number }
 });
 
 // Recipe model creation
