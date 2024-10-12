@@ -9,7 +9,7 @@ const Recipe = require('../models/recipeModel');
 const xlsx = require('xlsx');
 
 /**
- * Function to get all recipes from the database.
+ * Function to create recipes.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message with JSON data on recipe creation or an error message.
