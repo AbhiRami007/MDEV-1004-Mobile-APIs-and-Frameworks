@@ -115,7 +115,7 @@ exports.updateRecipe = async (req, res) => {
  * Function to delete recipe by Id.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
- * @returns {void} - Returns success message with deleted data on deletion or an error message.
+ * @returns {void} - Returns success message on deletion or an error message.
  */
 
 exports.deleteRecipe = async (req, res) => {
