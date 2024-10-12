@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const recipeRoutes = require('./routes/recipeRoute');
+const userRoutes = require('./routes/userRoutes');
 
 //initialise express app
 const app = express();
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //define routes
 app.use('/recipe', recipeRoutes);
+app.use('/user', userRoutes);
 
 //set the port
 const PORT = process.env.PORT || 3000;
