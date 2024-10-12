@@ -46,7 +46,7 @@ exports.registerUser = async (req, res) => {
 };
 
 /**
- * Function to create new user.
+ * Function to login user.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {void} - Returns success message on login or an error message.
@@ -69,4 +69,15 @@ exports.loginUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error', error });
     }
+};
+
+/**
+ * Function to logout user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void} - Returns success message on logout.
+ * @description - Logout user
+*/
+exports.logoutUser = (req, res) => {
+    res.json({ message: "Logged out successfully" });
 };
