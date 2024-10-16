@@ -30,28 +30,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Read data from movies.json
-const data = JSON.parse(fs.readFileSync('./movies.json','utf-8'));
-//console.log(data);
-//Function to import movies from JSON
-const importMovies = async (req, res) => {
-    try {
-        const count = await Movie.countDocuments();
-        if (count === 0) {
-            
-            await Movie.create(data);
-            console.log('Data successfully imported to MongoDb');
-            res.status(200).send('Data successfully imported');
-        } else {
-            console.log('Data already exists in the database, skipping import');
-            res.status(200).send('Data already exists, skipping import');
-        }
-    } catch (e) {
-        console.error('Error importing data',e);
-        
-    }
-};
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -67,7 +45,7 @@ app.get('/', (req, res) => {
 app.use('/movie', movieRoutes); // This will include all routes defined in routes.js
 app.use(logger);//apply logger middleware
 app.use(handleNotFound);//404 handler for routes not defined
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 // Start the server
 app.listen(port, () => {
