@@ -1,6 +1,6 @@
 {
   "name": "assignment3-secureapiwithui",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Secure Recipes API with JWT",
   "main": "index.js",
   "scripts": {
