@@ -10,7 +10,7 @@ import Combine
 
 class ApiService {
     func fetchRecipes() -> AnyPublisher<[Recipe], Error> {
-        guard let url = URL(string: "http://10.0.0.143:3000/recipe/") else {
+        guard let url = URL(string: "https://mdev-1004-mobile-apis-and-frameworks.onrender.com/recipe/") else {
             fatalError("Invalid URL")
         }
 
