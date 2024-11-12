@@ -32,3 +32,22 @@ exports.importRecipes = async (req, res) => {
   }
 };
 
+/**
+ * Function to create recipes.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void} - Returns success message with JSON data on recipe creation or an error message.
+ * @description - create a new recipes and save to database 
+*/
+
+exports.createRecipe = async (req, res) => {
+  try {
+    const recipe = new Recipe(req.body);
+    await recipe.save();
+    res.status(201).json({ message: "Recipe created Successfully", recipe });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error creating Recipe");
+  }
+};
+
