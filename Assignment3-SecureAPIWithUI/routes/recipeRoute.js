@@ -8,12 +8,13 @@
 const express = require('express');
 const router = express.Router();
 const recipeController = require('../controllers/recipeController');
+const verifyToken = require('../middleware/auth');
 
 //Route to import recipes
 router.post('/import',recipeController.importRecipes);
 
 // POST route for creating recipe
-router.post('/', recipeController.createRecipe);
+router.post('/', verifyToken, recipeController.createRecipe);
 
 // GET route for all recipes
 router.get('/', recipeController.getAllRecipes);
@@ -22,9 +23,9 @@ router.get('/', recipeController.getAllRecipes);
 router.get('/:id', recipeController.getRecipeById);
 
 // PUT route to update recipe by id
-router.put('/:id', recipeController.updateRecipe);
+router.put('/:id',verifyToken, recipeController.updateRecipe);
 
 //Route to delete a movie by id
-router.delete('/:id',recipeController.deleteRecipe);
+router.delete('/:id', verifyToken, recipeController.deleteRecipe);
 
 module.exports = router;
