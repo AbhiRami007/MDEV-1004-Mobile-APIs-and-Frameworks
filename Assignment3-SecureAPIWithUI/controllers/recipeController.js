@@ -51,3 +51,19 @@ exports.createRecipe = async (req, res) => {
   }
 };
 
+/**
+ * Function to get all recipes from the database.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void} - Returns JSON response with recipes or an error message.
+ * @description - Get all recipes from database
+ */
+
+exports.getAllRecipes = async (req, res) => {
+  try {
+      const recipes = await Recipe.find();
+      res.status(200).json(recipes);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+};

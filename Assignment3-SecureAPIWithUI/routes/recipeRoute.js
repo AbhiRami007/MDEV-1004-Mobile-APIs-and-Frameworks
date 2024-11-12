@@ -15,4 +15,8 @@ router.post('/import',recipeController.importRecipes);
 // POST route for creating recipe
 router.post('/', recipeController.createRecipe);
 
+// GET route for all recipes
+router.get('/', recipeController.getAllRecipes);
+
+
 module.exports = router;
