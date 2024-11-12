@@ -67,3 +67,24 @@ exports.getAllRecipes = async (req, res) => {
       res.status(500).json({ message: error.message });
   }
 };
+
+/**
+ * Function to get recipe by Id.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void} - Returns JSON response with recipes or an error message.
+ * @description - Get single recipe from database by using id
+*/
+
+exports.getRecipeById = async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+    if (!recipe) {
+      return res.status(404).send("Recipe not found");
+    }
+    res.status(201).json(recipe);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error retrieving the Recipe");
+  }
+};

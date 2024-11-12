@@ -18,5 +18,7 @@ router.post('/', recipeController.createRecipe);
 // GET route for all recipes
 router.get('/', recipeController.getAllRecipes);
 
+// GET route to find recipe by id
+router.get('/:id', recipeController.getRecipeById);
 
 module.exports = router;
