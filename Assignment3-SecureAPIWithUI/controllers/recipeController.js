@@ -115,3 +115,24 @@ exports.updateRecipe = async (req, res) => {
     res.status(500).send("Error updating the Recipe");
   }
 };
+
+/**
+ * Function to delete recipe by Id.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void} - Returns success message on deletion or an error message.
+ * @description - delete recipe by id from database 
+*/
+
+exports.deleteRecipe = async (req, res) => {
+  try {
+    const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id);
+    if (!deletedRecipe) {
+      return res.status(404).send("Recipe not found");
+    }
+    res.status(201).json({ message: "Recipe deleted successfully", deletedRecipe });
+  } catch (e) {
+    console.error(e);
+    res.status(500).send("Error deleting the Recipe");
+  }
+};
