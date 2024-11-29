@@ -1,9 +1,13 @@
 const express = require("express");
-const { signUp } = require("../controllers/firebaseController");
+const { signUp, signIn } = require("../controllers/firebaseController");
 
 const router = express.Router();
 
 // Route for sign-up (create user)
 router.post("/signup", signUp);
+
+// Route for sign-in (get Firebase custom token)
+router.post("/signin", signIn);
+
 
 module.exports = router; // Export the router
