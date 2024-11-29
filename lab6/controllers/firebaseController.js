@@ -34,4 +34,24 @@ const signIn = async (req, res) => {
     }
   };
 
-module.exports = { signUp, signIn };
+  // Middleware to verify Firebase ID Token
+const verifyToken = async (req, res, next) => {
+    const authHeader = req.header("Authorization");
+  
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ error: "No token provided" });
+    }
+  
+    const idToken = authHeader.split("Bearer ")[1];  // Extract token from 'Authorization' header
+  
+    try {
+      const decodedToken = await admin.auth().verifyIdToken(idToken);  // Verify the ID token
+      req.user = decodedToken;  // Attach the decoded token to the request object
+      next();  // Continue to the protected route handler
+    } catch (error) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+  };
+  
+
+module.exports = { signUp, signIn, verifyToken };
