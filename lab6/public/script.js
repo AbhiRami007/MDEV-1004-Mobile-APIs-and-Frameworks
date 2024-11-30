@@ -1,6 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDeuSTgFZuiVnaCeXSBrm_iijVHk5fV79A",
@@ -16,17 +13,6 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-
-// Utility for user-friendly error messages
-const getErrorMessage = (errorCode) => {
-  const errorMessages = {
-    "auth/invalid-email": "Invalid email address.",
-    "auth/wrong-password": "Incorrect password.",
-    "auth/user-not-found": "No user found with this email.",
-    "auth/email-already-in-use": "This email is already registered.",
-  };
-  return errorMessages[errorCode] || "An error occurred. Please try again.";
-};
 
 // Handle Sign-In
 document.getElementById("signinForm").addEventListener("submit", async (e) => {
@@ -46,27 +32,27 @@ document.getElementById("signinForm").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (response.ok) {
-      // Save the token securely
-      firebase
-        .auth()
-        .signInWithCustomToken(data.token)
-        .then(async (userCredential) => {
-          const idToken = await userCredential.user.getIdToken();
-          console.log("ID Token:", idToken);
-
-          // Use this ID token to authenticate requests to your backend
-          localStorage.setItem("authToken", idToken);
-
-          // Proceed with your app logic
-          window.location.href = "welcome.html";
-        })
-        .catch((error) => {
-          console.error("Error signing in with custom token:", error.message);
-        });
-      alert("Sign-In successful!");
-      window.location.href = "welcome.html";
+      if (data.token) {
+        try {
+            const userCredential = await firebase.auth().signInWithCustomToken(data.token);
+            console.log("Signed in successfully:", userCredential);
+        
+            // Now retrieve the ID token after successful sign-in
+            const idToken = await userCredential.user.getIdToken();
+            console.log("ID Token:", idToken);
+        
+            // Store the ID token in localStorage or use it as needed
+            localStorage.setItem("authToken", idToken);
+            window.location.href = "welcome.html";
+          } catch (error) {
+            console.error("Error signing in with custom token:", error.message);
+          }
+      } else {
+        document.getElementById("signinMessage").innerText = "No token found.";
+      }
     } else {
-      document.getElementById("signinMessage").innerText = data.error;
+      document.getElementById("signinMessage").innerText =
+        data.error || "An unknown error occurred.";
     }
   } catch (error) {
     console.error("Error during sign-in:", error);
