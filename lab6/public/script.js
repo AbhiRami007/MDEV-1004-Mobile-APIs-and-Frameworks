@@ -3,58 +3,104 @@ import "firebase/auth";
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDeuSTgFZuiVnaCeXSBrm_iijVHk5fV79A",
-    authDomain: "fir-app-40659.firebaseapp.com",
-    databaseURL: "https://fir-app-40659-default-rtdb.firebaseio.com/",
-    projectId: "fir-app-40659",
-    storageBucket: "fir-app-40659.firebasestorage.app",
-    messagingSenderId: "60644023497",
-    appId: "1:60644023497:web:44cf4ddb56fa9044de4118"
-  };
+  apiKey: "AIzaSyDeuSTgFZuiVnaCeXSBrm_iijVHk5fV79A",
+  authDomain: "fir-app-40659.firebaseapp.com",
+  databaseURL: "https://fir-app-40659-default-rtdb.firebaseio.com/",
+  projectId: "fir-app-40659",
+  storageBucket: "fir-app-40659.firebasestorage.app",
+  messagingSenderId: "60644023497",
+  appId: "1:60644023497:web:44cf4ddb56fa9044de4118",
+};
 
 // Initialize Firebase
 if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 }
 
 // Utility for user-friendly error messages
 const getErrorMessage = (errorCode) => {
-    const errorMessages = {
-        "auth/invalid-email": "Invalid email address.",
-        "auth/wrong-password": "Incorrect password.",
-        "auth/user-not-found": "No user found with this email.",
-        "auth/email-already-in-use": "This email is already registered.",
-    };
-    return errorMessages[errorCode] || "An error occurred. Please try again.";
+  const errorMessages = {
+    "auth/invalid-email": "Invalid email address.",
+    "auth/wrong-password": "Incorrect password.",
+    "auth/user-not-found": "No user found with this email.",
+    "auth/email-already-in-use": "This email is already registered.",
+  };
+  return errorMessages[errorCode] || "An error occurred. Please try again.";
 };
 
 // Handle Sign-In
 document.getElementById("signinForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("signinEmail").value;
-    const password = document.getElementById("signinPassword").value;
+  e.preventDefault();
+  const email = document.getElementById("signinEmail").value;
+  const password = document.getElementById("signinPassword").value;
 
-    try {
-        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-        const idToken = await userCredential.user.getIdToken();
-        // Use secure storage for the token
-        localStorage.setItem("authToken", idToken);
-        window.location.href = "welcome.html";
-    } catch (error) {
-        document.getElementById("signinMessage").innerText = getErrorMessage(error.code);
+  try {
+    const response = await fetch("http://localhost:3000/firebase/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Save the token securely
+      firebase
+        .auth()
+        .signInWithCustomToken(data.token)
+        .then(async (userCredential) => {
+          const idToken = await userCredential.user.getIdToken();
+          console.log("ID Token:", idToken);
+
+          // Use this ID token to authenticate requests to your backend
+          localStorage.setItem("authToken", idToken);
+
+          // Proceed with your app logic
+          window.location.href = "welcome.html";
+        })
+        .catch((error) => {
+          console.error("Error signing in with custom token:", error.message);
+        });
+      alert("Sign-In successful!");
+      window.location.href = "welcome.html";
+    } else {
+      document.getElementById("signinMessage").innerText = data.error;
     }
+  } catch (error) {
+    console.error("Error during sign-in:", error);
+    document.getElementById("signinMessage").innerText =
+      "An error occurred. Please try again.";
+  }
 });
 
 // Handle Sign-Up
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+  e.preventDefault();
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
 
-    try {
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        document.getElementById("signupMessage").innerText = "Account created successfully!";
-    } catch (error) {
-        document.getElementById("signupMessage").innerText = getErrorMessage(error.code);
+  try {
+    const response = await fetch("http://localhost:3000/firebase/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      document.getElementById("signupMessage").innerText =
+        "Account created successfully!";
+    } else {
+      document.getElementById("signupMessage").innerText = data.error;
     }
+  } catch (error) {
+    console.error("Error during sign-up:", error);
+    document.getElementById("signupMessage").innerText =
+      "An error occurred. Please try again.";
+  }
 });
