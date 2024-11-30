@@ -9,14 +9,42 @@
 <body>
   <h1>Welcome!</h1>
   <p>You have successfully logged in.</p>
+  <button id="protectedButton">Go to protected Route</button>
   <button id="logoutButton">Logout</button>
-
+<p id="invalid"></p>
   <script>
     // Handle Logout
     document.getElementById("logoutButton").addEventListener("click", () => {
       localStorage.removeItem("authToken");
       window.location.href = "index.html"; // Redirect to login page
     });
+
+    const idToken = localStorage.getItem("authToken")
+    // Go to protected route
+document.getElementById("protectedButton").addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/firebase/protected", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${idToken}`,
+          "Content-Type": "application/json"
+        },
+      });
+  
+      const data = await response.json();
+      if(data.user){
+        window.location.href = "protectedPage.html"; // Redirect to login page
+      }
+      else{
+        document.getElementById("invalid").innerText=data.error;
+      }
+      
+    } catch (error) {
+        console.log(error)
+    }
+  });
+
   </script>
 </body>
 </html>
