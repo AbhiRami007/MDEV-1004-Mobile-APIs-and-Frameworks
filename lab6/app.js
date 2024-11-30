@@ -11,6 +11,8 @@ const PORT = 3000;
 app.use(cors());
 // Middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public"))); 
+
 // Routes
 app.use("/firebase", firebaseRoutes); // Include Firebase authentication routes
 
