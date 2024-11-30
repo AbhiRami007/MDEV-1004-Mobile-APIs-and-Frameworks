@@ -11,6 +11,13 @@ const signUp = async (req, res) => {
       password,
     });
 
+    // Save user data to Realtime Database
+    const db = admin.database(); // Access the Realtime Database
+    await db.ref(`users/${userRecord.uid}`).set({
+      email: userRecord.email,
+      createdAt: new Date().toISOString(),
+    });
+
     res.status(201).json({ message: "User created successfully", uid: userRecord.uid });
   } catch (error) {
     res.status(400).json({ error: error.message });
