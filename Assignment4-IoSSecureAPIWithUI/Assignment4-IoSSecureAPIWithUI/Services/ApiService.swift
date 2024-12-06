@@ -37,6 +37,28 @@ class ApiService {
             .eraseToAnyPublisher()
     }
     
+    func createRecipe(_ recipe: Recipe) -> AnyPublisher<Recipe, Error> {
+            guard let url = URL(string: baseURL) else {
+                fatalError("Invalid URL")
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            addAuthorizationHeader(to: &request)
+            
+            do {
+                request.httpBody = try JSONEncoder().encode(recipe)
+            } catch {
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+
+            return URLSession.shared.dataTaskPublisher(for: request)
+                .map { $0.data }
+                .decode(type: Recipe.self, decoder: JSONDecoder())
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
+        }
 }
 
 //https://mdev-1004-mobile-apis-and-frameworks.onrender.com/
