@@ -14,7 +14,7 @@ const verifyToken = require('../middleware/auth');
 router.post('/import',recipeController.importRecipes);
 
 // POST route for creating recipe
-router.post('/', verifyToken, recipeController.createRecipe);
+router.post('/', verifyToken, recipeController.createRecipes);
 
 // GET route for all recipes
 router.get('/', recipeController.getAllRecipes);
