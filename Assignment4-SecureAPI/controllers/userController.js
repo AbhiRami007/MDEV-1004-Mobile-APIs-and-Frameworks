@@ -64,30 +64,20 @@ exports.loginUser = async (req, res) => {
     }
 
     //checking for existing user
-    const userExisted = await User.findOne({ email });
-    if (!userExisted) {
-      return res.status(400).json({ message: "Invalid username or password" });
+    const user = await User.findOne({ email });
+    const matchPassword = await bcrypt.compare(password, user.password);
+    if (!user || !matchPassword) {
+      return res.status(401).json({ message: "Invalid username or password" });
     }
-    //comparing the entered password with hashed password
-    const userMatchedPassword = await bcrypt.compare(
-      password,
-      userExisted.password
-    );
-    if (!userMatchedPassword) {
-      return res
-        .status(400)
-        .json({ message: "Password does not match, please try again" });
-    }
+
     //Create token for the user
     const token = jwt.sign(
-      { user_id: userExisted._id, email },
-      process.env.SECRET_TOKEN,
+      { user_id: user._id, email },
+      process.env.JWT_SECRET,
       {
-        expiresIn: "15m",
+        expiresIn: "10m",
       }
     );
-
-    //on successfull login
     res.status(200).json({ message: "Login Successfull", token });
   } catch (error) {
     console.error("Error details -", error);
