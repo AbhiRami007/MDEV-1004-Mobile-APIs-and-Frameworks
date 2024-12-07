@@ -31,16 +31,23 @@ exports.registerUser = async (req, res) => {
         .json({ message: "Invalid email address, please re-enter / check" });
     }
 
-    //Checking for existing user
-    const userExist = await User.findOne({ email });
-    if (userExist) {
-      return res.status(400).json({ message: "Email is already in use" });
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    //registering a new user
-    const newUser = new User({ username, email, password });
+    //Hash incoming password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new user
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
-    return res.status(201).json({ message: "User registered successfully" });
+
+    // Return user data excluding the password
+    res.status(201).json({
+      message: "User registered successfully",
+    });
   } catch (error) {
     console.error("Error details -", error);
     return res.status(500).json({ message: "Error registering user" });
