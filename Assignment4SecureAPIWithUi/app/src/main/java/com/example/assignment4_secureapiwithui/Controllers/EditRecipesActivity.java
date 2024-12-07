@@ -14,6 +14,7 @@ import com.example.assignment4_secureapiwithui.R;
 import com.example.assignment4_secureapiwithui.Models.Recipe;
 import com.example.assignment4_secureapiwithui.Models.RecipeResponseNew;
 import com.example.assignment4_secureapiwithui.Services.RetrofitClient;
+import com.example.assignment4_secureapiwithui.Services.TokenManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,13 +58,15 @@ public class EditRecipesActivity extends AppCompatActivity {
         String updatedType = recipeTypeInput.getText().toString();
         double updatedRating = Double.parseDouble(recipeRatingInput.getText().toString());
 
+        String token = TokenManager.getToken(this);
+        Log.d("Token", "Bearer " + token);
 
         // Create Recipe object for update
         Recipe updatedRecipe = new Recipe(recipeId, updatedName, updatedType, updatedRating);
 
         // Call API to update recipe
         ApiService apiService = RetrofitClient.getApiService(this);
-        Call<RecipeResponseNew> call = apiService.updateRecipe(recipeId, updatedRecipe);
+        Call<RecipeResponseNew> call = apiService.updateRecipe(recipeId, updatedRecipe, token);
 
         call.enqueue(new Callback<RecipeResponseNew>() {
             @Override

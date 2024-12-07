@@ -38,7 +38,7 @@ public interface ApiService {
     Call<RecipeResponseNew> createRecipe(@Body Recipe recipe, @Header("Authorization") String token);
 
     @PUT("/recipe/{id}")
-    Call<RecipeResponseNew> updateRecipe(@Path("id") String id, @Body Recipe recipe);
+    Call<RecipeResponseNew> updateRecipe(@Path("id") String id, @Body Recipe recipe, @Header("Authorization") String token);
 
     @DELETE("/recipe/{id}")
     Call<Void> deleteRecipe(@Path("id") String id,  @Header("Authorization") String token);
