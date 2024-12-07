@@ -18,15 +18,19 @@ const fs = require("fs");
 
 exports.importRecipes = async (req, res) => {
   try {
-    const data = JSON.parse(fs.readFileSync("./recipes_list.json", "utf-8"));
-    await Recipe.insertMany(data); // Import data into Mongo db
-    res.status(200).send("Recipes imported to database successfully");
+    // Read data from recipes.json
+    const data = JSON.parse(fs.readFileSync("./recipes.json", "utf-8"));
+    const count = await Recipe.countDocuments();
+    if (count === 0) {
+      await Recipe.create(data);
+      res.status(200).send("Data successfully imported to mongoDB");
+    } else {
+      res.status(200).send("Data already exists, skipping import");
+    }
   } catch (e) {
-    console.error(e);
-    res.status(500).send("Error Importing Recipes to database");
+    res.status(500).send("Error importing data");
   }
 };
-
 /**
  * Function to create recipes.
  * @param {Object} req - The request object.
