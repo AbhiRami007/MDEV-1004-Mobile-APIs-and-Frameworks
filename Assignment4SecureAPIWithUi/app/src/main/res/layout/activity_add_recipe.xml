@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Recipe"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Recipe Name Input -->
+    <EditText
+        android:id="@+id/addRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Name"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Cuisine Type Input -->
+    <EditText
+        android:id="@+id/addRecipeType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cuisine Type"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Rating Input -->
+    <EditText
+        android:id="@+id/addRecipeRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rating"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/addRecipeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Recipe"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:textSize="16sp"/>
+</LinearLayout>
